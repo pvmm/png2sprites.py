@@ -522,7 +522,7 @@ def main():
             line_num += 10; println('%d IF INKEY$ = "" GOTO %d' % (line_num, line_num))
             line_num += 10; println('%d END' % line_num)
             line_num  = 10**(math.ceil(math.log10(line_num)+0.00001))
-            println('%d REM %s_TOTAL = %d' % (line_num, args.id.upper(), total_bytes))
+            println('%d REM %s_TOTAL_BYTES = %d' % (line_num, args.id.upper(), total_bytes))
             for i in range(len(out)):
                 line_num += 10; println('%d REM %s_COLORS(%d)' % (line_num, args.id.upper(), i))
                 line_num += 10; print('%d %s' % (line_num, to_hex_list_str_basic(out[i]['colors'])), end='')
@@ -532,7 +532,7 @@ def main():
 
     elif args.asm:
         if not args.pal_only:
-            print('%s_TOTAL = %d\n' % (args.id.upper(), total_bytes))
+            print('%s_TOTAL_BYTES = %d\n' % (args.id.upper(), total_bytes))
 
         print('%s_palette:' % args.id)
         for index, color in enumerate(cur_pal):
@@ -561,7 +561,7 @@ def main():
         print('}\n')
 
         if not args.pal_only:
-            print('#define %s_TOTAL %d\n' % (args.id.upper(), total_bytes))
+            print('#define %s_TOTAL_BYTES %d\n' % (args.id.upper(), total_bytes))
             color_out = ''; pattern_out = ''
             for count in range(len(out)):
                 color_out   += '{\n' + to_hex_list_str(out[count]['colors']) + '},\n'
